@@ -8,3 +8,23 @@ for(int i=n;i>0;i--){
         cout<<"\n";
     }
 #双层嵌套注意循环的目的，此为总共n行，每行i个
+####
+int fact[2000];
+int sum[2000];
+int maxn=2000;
+void multi(int x){       #高精度乘法（竖式乘法
+    int carry=0;           #进位辅助变量
+    for(int i=0;i<maxn;i++){     #对每一位都有可能进行计算
+        carry+=fact[i]*x;        #对每一位与乘数相乘
+        fact[i]=carry%10;        #取结果的个位作为这一位的答案
+        carry/=10;               #算出进位
+    }
+}
+void add(){                   #高精度加法
+    int carry=0;
+    for(int i=0;i<maxn;i++){
+        carry+=sum[i]+fact[i];  #每一位相加
+        sum[i]=carry%10;        #取个位为答案
+        carry/=10;              #算出进位
+    }
+}
